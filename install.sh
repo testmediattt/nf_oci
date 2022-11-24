@@ -20,12 +20,9 @@ if [ ! -d "$WORKDIR" ]; then
 fi
 cd $WORKDIR
 curl -L -o $WORKDIR/oci_monitor $RELEASE_URL
-chmod +x oci_monitor
+chmod +x $WORKDIR/oci_monitor
 # Download oci_monitor.service
-curl -L -o oci.service https://raw.githubusercontent.com/testmediattt/nf_oci/main/oci.service
-# Copy oci_monitor.service to /etc/systemd/system/
-mv oci.service /etc/systemd/system/
-
+curl -L -o /etc/systemd/system/oci.service https://raw.githubusercontent.com/testmediattt/nf_oci/main/oci.service
 
 # config oci_monitor
 echo -e "请输入config配置文件:"
