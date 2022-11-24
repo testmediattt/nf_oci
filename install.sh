@@ -81,4 +81,5 @@ systemctl daemon-reload
 systemctl enable oci.service
 systemctl start oci.service
 
-echo -e "启动完成，运行systemctl stop oci.service可停止服务"
+echo -e "启动完成，运行 systemctl stop oci.service 可停止服务"
+echo -e "运行 systemctl status oci.service 查看服务状态"
