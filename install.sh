@@ -1,5 +1,5 @@
 OS="linux"
-WORKDIR="/opt/oci/"
+WORKDIR="/opt/oci"
 
 # Check ARCH is amd64 or arm64
 ARCH=$(uname -m)
@@ -15,18 +15,17 @@ fi
 RELEASE_URL="https://github.com/testmediattt/nf_oci/releases/download/v0.0.1/oci_monitor_$OS_$ARCH"
 
 # Download oci_monitor
-cd $WORKDIR
 # 如果目录不存在，创建目录
 if [ ! -d "$WORKDIR" ]; then
     mkdir -p $WORKDIR
 fi
-
+cd $WORKDIR
 curl -L -o $WORKDIR/oci_monitor $RELEASE_URL
 chmod +x oci_monitor
 # Download oci_monitor.service
 curl -L -o oci.service https://raw.githubusercontent.com/testmediattt/nf_oci/main/oci.service
 # Copy oci_monitor.service to /etc/systemd/system/
-cp oci.service /etc/systemd/system/
+mv oci.service /etc/systemd/system/
 
 
 # config oci_monitor
