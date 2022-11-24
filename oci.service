@@ -1,0 +1,24 @@
+[Unit]
+Description=Oracle Netflix Unlock Monitoring
+After=syslog.target
+
+[Service]
+#LimitMEMLOCK=infinity
+#LimitNOFILE=65535
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/opt/oci/
+ExecStart=/opt/oci/oci_monitor
+Restart=always
+#Environment=DEBUG=true
+
+# Some distributions may not support these hardening directives. If you cannot start the service due
+# to an unknown option, comment out the ones not supported by your version of systemd.
+#ProtectSystem=full
+#PrivateDevices=yes
+#PrivateTmp=yes
+#NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
