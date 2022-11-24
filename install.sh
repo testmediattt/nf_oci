@@ -16,6 +16,11 @@ RELEASE_URL="https://github.com/testmediattt/nf_oci/releases/download/v0.0.1/oci
 
 # Download oci_monitor
 cd $WORKDIR
+# 如果目录不存在，创建目录
+if [ ! -d "$WORKDIR" ]; then
+    mkdir -p $WORKDIR
+fi
+
 curl -L -o $WORKDIR/oci_monitor $RELEASE_URL
 chmod +x oci_monitor
 # Download oci_monitor.service
