@@ -31,8 +31,8 @@ echo -e "例如输入：user=ocid1.user.oc1..aaaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxx
 read -p "请输入user:" user_ocid
 echo -e "例如输入：fingerprint=a1:a1:a1:a1:a1:a1:a1:a1"
 read -p "请输入fingerprint:" fingerprint
-echo -e "例如输入：tenancy_ocid=ocid1.tenancy.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-read -p "请输入tenancy_ocid:" tenancy_ocid
+echo -e "例如输入：tenancy=ocid1.tenancy.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+read -p "请输入tenancy:" tenancy_ocid
 echo -e "例如输入：region=sa-saopaulo-1"
 read -p "请输入region:" region
 
@@ -46,19 +46,14 @@ echo -e "您输入的配置为："
 echo -e "$config"
 read -p "确认输入是否正确？(y/n)" confirm
 if [ "$confirm" = "y" ]; then
-    echo -e "$config" > /opt/oci/config
-    echo -e "请输入key_file文件内容"
-    read -p "key_file: " key_file
-    echo -e "$key_file" > /opt/oci/key_file
-    echo -e "配置完成"
+    echo -e "继续安装"
 else
     echo -e "请重新运行脚本"
     exit 1
 fi
 
-# 粘贴密钥
-echo -e "请粘贴密钥"
-read -p "key: " key
+echo -e "请输入key_file文件路径"
+read -p "key_file: " key_file
 
 echo -e "正在配置..."
 # 获得家目录
@@ -69,12 +64,11 @@ if [ ! -d "$oci_config_dir" ]; then
     mkdir $oci_config_dir
 fi
 echo -e "$config" > $oci_config_dir/config
-echo -e "$key" > $oci_config_dir/key.pem
+cp $key_file $oci_config_dir/key.pem
 echo "key_file=$oci_config_dir/key.pem" >> $oci_config_dir/config
 
 echo -e "配置完成"
 echo -e "正在启动"
-
 
 # Start oci_monitor.service
 systemctl daemon-reload
