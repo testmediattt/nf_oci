@@ -1,4 +1,3 @@
-OS="linux"
 WORKDIR="/opt/oci"
 
 # Check ARCH is amd64 or arm64
@@ -12,7 +11,7 @@ else
     exit 1
 fi
 
-RELEASE_URL="https://github.com/testmediattt/nf_oci/releases/download/v0.0.1/oci_monitor_$OS_$ARCH"
+RELEASE_URL="https://github.com/testmediattt/nf_oci/releases/download/v0.0.1/oci_monitor_linux_$ARCH"
 
 # Download oci_monitor
 # 如果目录不存在，创建目录
