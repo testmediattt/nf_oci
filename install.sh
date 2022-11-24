@@ -41,7 +41,8 @@ read fingerprint
 read tenancy_ocid
 read region
 
-config="$user_ocid
+config="[DEFAULT]
+$user_ocid
 $fingerprint
 $tenancy_ocid
 $region"
