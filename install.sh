@@ -25,14 +25,22 @@ cp oci.service /etc/systemd/system/
 
 
 # config oci_monitor
-echo -e "请输入config配置文件（不包括key_file那一行）"
-echo -e "例如："
-echo -e "user_ocid=ocid1.user.oc1..aaaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-echo -e "fingerprint=a1:a1:a1:a1:a1:a1:a1:a1"
-echo -e "tenancy_ocid=ocid1.tenancy.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-echo -e "region=ap-shanghai"
+echo -e "请输入config配置文件:"
 
-read -p "config: " config
+echo -e "例如输入：user=ocid1.user.oc1..aaaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+read -p "请输入user:" user_ocid
+echo -e "例如输入：fingerprint=a1:a1:a1:a1:a1:a1:a1:a1"
+read -p "请输入fingerprint:" fingerprint
+echo -e "例如输入：tenancy_ocid=ocid1.tenancy.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+read -p "请输入tenancy_ocid:" tenancy_ocid
+echo -e "例如输入：region=sa-saopaulo-1"
+read -p "请输入region:" region
+
+config="$user_ocid
+$fingerprint
+$tenancy_ocid
+$region"
+
 # 确认输入是否正确
 echo -e "您输入的配置为："
 echo -e "$config"
